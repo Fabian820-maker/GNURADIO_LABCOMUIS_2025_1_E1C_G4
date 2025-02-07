@@ -1,4 +1,4 @@
-# Laboratorio de Comunicaciones
+# Laboratorio de Comunicaciones22455
 ## Universidad Industrial de Santander
 
 Utilice esta [plantilla](#integrantes) para presentar sus informes de laboratorio. 
