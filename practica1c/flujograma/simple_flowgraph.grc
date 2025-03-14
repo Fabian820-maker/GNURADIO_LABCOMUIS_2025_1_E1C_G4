@@ -185,7 +185,7 @@ blocks:
   parameters:
     comment: "Bloque usado para configurar \nvalores de variables que no se\nvan a\
       \ actualizar durante la ejecuci\xF3n"
-    value: 20e3
+    value: 1e6
   states:
     bus_sink: false
     bus_source: false
@@ -361,7 +361,7 @@ blocks:
     bus_structure: null
     coordinate: [1040, 440.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: channels_channel_model_0
   id: channels_channel_model
   parameters:
@@ -382,7 +382,7 @@ blocks:
     bus_structure: null
     coordinate: [736, 404.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: import_1
   id: import
   parameters:
@@ -952,7 +952,7 @@ blocks:
     bus_structure: null
     coordinate: [744, 692.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: virtual_sink_0
   id: virtual_sink
   parameters:
@@ -965,7 +965,7 @@ blocks:
     bus_structure: null
     coordinate: [1280, 448.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: virtual_sink_0_0
   id: virtual_sink
   parameters:
@@ -978,7 +978,7 @@ blocks:
     bus_structure: null
     coordinate: [744, 616.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: virtual_source_0
   id: virtual_source
   parameters:

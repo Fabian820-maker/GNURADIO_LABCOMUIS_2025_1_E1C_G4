@@ -1,164 +1,157 @@
+# Práctica 1: Mediciones de Potencia y Frecuencia
 
-# Práctica 1C. Mediciones de potencia y frecuencia
+### Integrantes
+- **Jaiver Josept Buitrago Graterón** - 2204277
+- **Nelson Fabian Valbuena Carreño** - 2181556
 
-## **Objetivo General**
-Familiarizarse con el uso de herramientas de software definido por radio (SDR) como GNU Radio, junto con equipos de medición como el USRP 2920, el osciloscopio R&S RTB2004 y el analizador de espectros R&S FPC1000. Los estudiantes aprenderán a medir y analizar parámetros clave en comunicaciones, como potencia, ancho de banda, relación señal a ruido (SNR) y piso de ruido.
+Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones  
+Universidad Industrial de Santander
 
----
-
-## **Materiales y Equipos**
-- **USRP 2920**: Radio definido por software.
-- **Osciloscopio R&S RTB2004**: Para visualización de señales en el dominio del tiempo y frecuencia.
-- **Analizador de Espectros R&S FPC1000**: Para mediciones en el dominio de la frecuencia.
-- **Computador con GNU Radio**: Para simulación y generación de señales usando el USRP 2920.
-- **Cables y conectores**: Para interconexión de equipos.
+### Fecha
+28 de Febrero del 2025
 
 ---
 
-## **Actividad 1: Revisión de Especificaciones de los Equipos**
+## Declaración de Originalidad y Responsabilidad
+Los autores de este informe certifican que el contenido aquí presentado es original y ha sido elaborado de manera independiente. Se han utilizado fuentes externas únicamente como referencia y han sido debidamente citadas.
 
-### **Objetivo**
-Familiarizarse con las especificaciones técnicas de los equipos de laboratorio y entender cómo configurarlos para realizar mediciones.
+Asimismo, los autores asumen plena responsabilidad por la información contenida en este documento.
 
-### **Procedimiento**
-1. **Revisar Manuales y Verificar Equipos**:
-   - Revisar las especificaciones de los equipos de laboratorio (USRP 2920, Osciloscopio R&S RTB2004 y Analizador de Espectros R&S FPC1000).
-   - Identificar las principales funciones y controles de los equipos.
-
-2. **Seleccionar Especificaciones Relevantes**:
-   - Seleccionar las **5 especificaciones** que consideren **más relevantes** de cada equipo. 
-
-3. **Configuración de los Equipos**:
-   - **USRP 2920**: Identificar el rango de frecuencia y ganancia configurable del radio. Para esto, conecte la alimentación y el cable de red al radio, y desde un terminal (Ctrl + Alt + T) ejecute el comando `uhd_usrp_probe`.
-   - **Osciloscopio R&S RTB2004**: Identificar el ancho de banda máximo, resolución vertical y tipos de mediciones soportadas.
-   - **Analizador de Espectros R&S FPC1000**: Identificar el rango de frecuencia, resolución y figura de ruido.
-
-### **Preguntas Orientadoras**
-1. ¿Cuál es el rango de frecuencia del USRP 2920 y cómo se compara con el del analizador de espectros?
-2. ¿Qué parámetros del USRP 2920 se deben configurar para transmitir una señal en una frecuencia específica?
-3. ¿Cómo se configura el osciloscopio para medir la amplitud y la frecuencia de una señal?
-4. ¿Qué diferencia hay entre medir una señal en el dominio del tiempo (osciloscopio) y en el dominio de la frecuencia (analizador de espectros)?
-5. ¿Cómo se mide el piso de ruido en el analizador de espectros? ¿Cómo afecta la frecuencia central, SPAN y RBW la medida de piso de ruido? ¿Por qué?
-
-### **Evidencia**
-- Lista con las 5 especificaciones más relevantes de cada equipo.
-- Realice una medición de piso de ruido normalizado.
+Uso de IA: Se utilizó ChatGPT para estructurar el informe y mejorar la redacción, pero el contenido técnico y los análisis fueron desarrollados íntegramente por los autores.
 
 ---
 
-## **Actividad 2: Simulación de Señales en GNU Radio**
+## Contenido
 
-### **Objetivo**
-Generar y analizar señales en GNU Radio para entender cómo se comportan diferentes formas de onda en tiempo y frecuencia.
+### Resumen
+En esta práctica, se emplearon herramientas de medición como el USRP 2920, el osciloscopio R&S RTB2004 y el analizador de espectros R&S FPC1000, junto con el software de simulación GNU Radio, para realizar mediciones y análisis de parámetros clave en comunicaciones, incluyendo potencia, ancho de banda, relación señal a ruido (SNR) y piso de ruido. Además, se analizó el comportamiento de una señal modulada en Amplitud, observando los cambios al variar los parámetros tanto del mensaje como de la portadora.
 
-### **Procedimiento**
-1. **Iniciar GNU Radio**:
-   - Ejecute GNU Radio Companion (GRC) (`gnuradio-companion`).
-   - Cargue el flujograma [`simple_flowgraph.grc`](https://github.com/omreyes/LabComUIS/blob/develop/guides/practice1/simple_flowgraph.grc).
-   - Identifique los bloques principales: `Signal Source`, `Throttle`, `QT GUI Time Sink` y `QT GUI Frequency Sink`.
-
-2. **Ejecutar el Flujograma**:
-   - Ejecute el flujograma y observe los diferentes controles (Source Controls, Channel Controls, USRP Controls), así como las señales generadas en las ventanas de tiempo (`Time Sink`) y frecuencia (`Frequency Sink`).
-   - Identifique y relacione los bloques presentes en el flujograma con lo observado en la ventana de ejecución.
-  
-3. **Análisis de Señales** 
-   - Analice y valide los resultados en el dominio del tiempo y de frecuencia si se modifica:
-     - el tipo de dato de la fuente (compleja o flotante)
-     - la forma de onda 
-     - la frecuencia y fase de la señal
-     - la amplitud de la señal generada.
-   - Modifique el nivel de ruido del modelo de canal y analice el efecto en tiempo y frecuencia.
-
-### **Preguntas Orientadoras**
-1. ¿Cómo se puede explicar matemáticamente la diferencia entre una fuente de tipo flotante y una de tipo complejo?
-2. ¿Cómo afecta la forma de onda a la distribución de energía (potencia) en el dominio de la frecuencia?
-3. ¿Qué sucede con la señal en el dominio del tiempo y la frecuencia si se modifican los diferentes parámetros de la fuente? ¿Lo observado corresponde a lo esperado teóricamente?
-4. ¿Cómo se relaciona la amplitud de la señal con la potencia observada en el dominio de la frecuencia?
-5. ¿Qué diferencias se observan entre una señal senoidal y una señal cuadrada en el dominio de la frecuencia?
-
-### **Evidencias**
-- Capturas de pantalla de señales generadas en el dominio del tiempo y la frecuencia que evidencien cada una de las comparaciones realizadas.
+**Palabras clave:** GNU Radio, USRP 2920, osciloscopio, analizador de espectros, SNR, piso de ruido.
 
 ---
 
-## **Actividad 3: Transmisión y Medición de Señales con el USRP 2920**
+### Procedimiento
 
-### **Objetivo**
-Transmitir señales usando el USRP 2920 y medir parámetros clave como potencia, ancho de banda, piso de ruido y relación señal a ruido (SNR).
+#### **Actividad 1: Revisión de Especificaciones de los Equipos**
 
-### **Procedimiento**
-1. **Configurar el USRP 2920**:
-   - Configure el flujograma en GNU Radio para transmitir una señal a través del USRP. Habilite o deshabilite los bloques correspondientes (Channel Model, Throttle, UHD: USRP Sink, Virtual Sink). Para esto seleccione el bloque deseado y presionando `E` (enable) o `D` (disable), respectivamente.
-   - Identifique el bloque de frecuencia de muestreo (samp_rate) y observe el efecto de cambiar su valor (e.g. 10 kHz).
-   - Verifique el efecto de modificar la frecuencia y ganancia del USRP. 
+**Objetivo:** Familiarizarse con las especificaciones técnicas de los equipos de laboratorio y entender cómo configurarlos para realizar mediciones.
 
-2. **Medición con el Analizador de Espectros**:
-   - Conecte la salida del USRP al analizador de espectros.
-   - Mida el piso de ruido normalizado a la frecuencia de portadora que va a utilizar.
-   - Compare el espectro de la señal observada en el analizador de espectros con la observada en la pantalla de simulación. Tenga en cuenta que el radio (USRP) equivale al diagrama de bloques mostrado en la figura.
+1. **Revisión de Manuales y Verificación de Equipos:**
+   - Se consultaron las especificaciones técnicas del USRP 2920, el osciloscopio R&S RTB2004 y el analizador de espectros R&S FPC1000 para comprender sus capacidades y limitaciones. A continuación, se presentan cinco especificaciones clave de cada equipo:
+     - **USRP 2920:**
+       1. Rango de frecuencia: 50 MHz - 2.2 GHz
+       2. Ancho de banda instantáneo: hasta 20 MHz
+       3. Resolución de ADC/DAC: 14 bits (ADC) / 16 bits (DAC)
+       4. Interfaz de comunicación: Gigabit Ethernet
+       5. Potencia de transmisión: hasta +17 dBm
+     - **Osciloscopio R&S RTB2004:**
+       1. Ancho de banda: 70 MHz - 300 MHz (según modelo)
+       2. Frecuencia de muestreo: hasta 2.5 GSa/s
+       3. Resolución vertical: 10 bits
+       4. Profundidad de memoria: hasta 10 Mpts por canal
+       5. Pantalla táctil de 10.1” con interfaz intuitiva
+     - **Analizador de espectros R&S FPC1000:**
+       1. Rango de frecuencia: 5 kHz - 1 GHz (expandible a 3 GHz)
+       2. Resolución de frecuencia: 1 Hz
+       3. Ancho de banda de resolución (RBW): 1 Hz - 3 MHz
+       4. Nivel de ruido promedio (DANL): -150 dBm (con preamplificador)
+       5. Pantalla de alta resolución y conectividad remota
+   - Se verificó la correcta conexión y funcionamiento de cada equipo antes de iniciar las mediciones.
 
-<img src="qam_modulator.png" alt="QAM Modulator" width="400">
-     
-   - Analice y valide los resultados en el dominio de la frecuencia si se modifica:
-     - el tipo de dato de la fuente (compleja o flotante)
-     - la forma de onda 
-     - la frecuencia y fase de la señal
-     - la amplitud de la señal generada.
-   - Mida potencia de la señal transmitida y ancho de banda de diferentes señales generadas.
-   - Conecte una antena apropiada a la entrada del analizador de espectros y observe el espectro de una señal FM (las estaciones FM se sitúan entre los 88 MHz y 108 MHz). Mida su ancho de banda y relación señal a ruido. 
-   - Determinar la máxima potencia de transmisión.
-   - Evalúe la respuesta en frecuencia del canal midiendo los cambios de ganancia del sistema cuando varía la frecuencia de portadora.
-   - Compare los resultados de transmitir usando un cable y usando antenas.
+2. **Diferencias en la medición de señales en el dominio del tiempo y en el dominio de la frecuencia:**
+   - En el dominio del tiempo, se visualiza la variación de la señal con respecto al tiempo, lo que permite analizar parámetros como amplitud, periodo y forma de onda.
+   - En el dominio de la frecuencia, se observa la distribución espectral de la señal, identificando sus componentes frecuenciales y permitiendo analizar aspectos como el ancho de banda, la presencia de armónicos y el ruido de fondo.
 
-4. **Medición con el Osciloscopio**:
-   - Analice y valide los resultados en el dominio del tiempo si se modifica:
-     - el tipo de dato de la fuente (compleja o flotante)
-     - la forma de onda 
-     - la frecuencia y fase de la señal
-     - la amplitud de la señal generada.
-  - Contraste estos resultados con los obtenidos con el analizador de espectros.
+3. **Medición del piso de ruido en el analizador de espectros:**
+   - El piso de ruido se mide determinando el nivel de señal más bajo presente en el espectro cuando no hay señales activas.
 
-5. **Cálculo de la Relación Señal a Ruido (SNR)**:
-   - Usar las mediciones de potencia y piso de ruido para calcular la SNR de algunas de las señales generadas.
-   - Anotar el valor de la SNR en dB.
-
-### **Preguntas Orientadoras**
-1. ¿Cómo se configura el USRP 2920 para transmitir una señal en una frecuencia específica?
-2. ¿Qué parámetros del flujograma afectan la potencia de la señal transmitida?
-3. ¿Cómo se mide el ancho de banda de la señal transmitida en el analizador de espectros?
-4. ¿Cómo se calcula la relación señal a ruido (SNR) a partir de las mediciones de potencia y piso de ruido?
-5. ¿Qué diferencias se observan en las mediciones de potencia cuando se varía la ganancia del USRP?
-6. ¿Es posible medir o estimar la potencia de la señal observada en el osciloscopio? ¿Por qué?
-
-### **Evidencia**
-- Capturas de pantalla de señales generadas en el dominio del tiempo y la frecuencia que evidencien las principales comparaciones realizadas.
-- Captura de la señal FM usada para medición de ancho de banda.
+4. **Efecto de la frecuencia central, SPAN y RBW en la medición del piso de ruido:**
+   - **Frecuencia central:** Determina la región del espectro que se está observando. Si se selecciona una frecuencia central con interferencias, el piso de ruido puede verse afectado.
+   - **SPAN:** Define el ancho del espectro visualizado. Un SPAN más amplio permite ver más señales, pero puede aumentar el nivel de ruido promedio.
+   - **RBW (Resolución de Banda):** Un RBW menor permite detectar señales más débiles y mejorar la precisión de la medición del piso de ruido, pero aumenta el tiempo de análisis. Además, si se aumenta el RBW, el piso de ruido baja en potencia visualmente y viceversa.
 
 ---
 
-## **Actividad 4: Análisis de Resultados y Conclusiones**
+#### **Actividad 2: Simulación de Señales en GNU Radio**
 
-### **Objetivo**
-Analizar los resultados obtenidos y sacar conclusiones sobre el comportamiento de las señales en diferentes condiciones para elaborar el informe.
+**Objetivo:** Generar y analizar señales en GNU Radio para entender cómo se comportan diferentes formas de onda en tiempo y frecuencia.
 
-### **Para la Elaboración del Informe**
-1. **Comparar Resultados**:
-   - Compare los resultados obtenidos en las simulaciones y las transmisiones reales.
-   - Discuta las diferencias entre las mediciones realizadas con el osciloscopio y el analizador de espectros.
+1. **Generación de Señales con GNU Radio y USRP 2920:**
+   - Se cargó, probó y configuró el diagrama de flujo entregado por el docente en GNU Radio.
+   - Se generaron diferentes señales y se variaron sus parámetros como frecuencia, amplitud y fase tanto en el dominio del tiempo como en el dominio de la frecuencia. Estas variaciones se evidencian en la carpeta `images`, donde cada subcarpeta contiene comparaciones de cada variación.
+   - Se observaron los siguientes cambios:
+     - Al cambiar la frecuencia, el espectro se desplazaba.
+     - Al cambiar la amplitud, se observaba un cambio en la potencia de la señal, aumentando o disminuyendo de forma directamente proporcional.
+     - En la fase, no se observaban cambios notables ya que, al ser señales continuas en el tiempo, desfasarlas no era algo fácilmente perceptible.
+     - Al agregar ruido a la señal, en el dominio del tiempo se añadían valores aleatorios que distorsionaban la señal, mientras que en el dominio de la frecuencia el piso de ruido aumentaba.
+     - Al cambiar la forma de onda, el espectro también cambiaba, agregando o eliminando armónicos dependiendo del caso.
 
-2. **Reflexionar sobre la SNR**:
-   - Analice la importancia de la relación señal a ruido (SNR) en las comunicaciones inalámbricas.
-   - Discuta cómo el piso de ruido afecta la capacidad de detectar señales débiles.
+2. **Demostración Matemática de la Diferencia entre Señal Flotante y Compleja:**
+   - Se comparó la representación matemática de una señal flotante y una señal compleja, destacando la diferencia fundamental entre ambas:
+     - **Señal Flotante:**
+       \[ F\{A\sin(wt)\} = \frac{A}{2} \left( \delta(w+f) + \delta(w-f) \right) \]
+     - **Señal Compleja:**
+       \[ F\{A\sin(wt) + A j \sin(wt)\} = F\{A e^{jwt}\} = A \delta(w-f) \]
 
-3. **Conclusiones Finales**:
-   - Escriba conclusiones basadas en los resultados obtenidos.
-   - Reflexe sobre las limitaciones de los equipos y cómo se podrían mejorar las mediciones.
+---
 
-### **Preguntas Orientadoras**
-1. ¿Qué conclusiones se pueden obtener sobre la relación entre la potencia de la señal y la calidad de la comunicación?
-2. ¿Cómo afecta el piso de ruido a la capacidad de detectar señales débiles?
-3. ¿Qué limitaciones tienen los equipos utilizados en términos de ancho de banda y precisión en las mediciones?
-4. ¿Cómo se pueden mejorar las mediciones de señal en un entorno con alto nivel de ruido?
-5. ¿Qué aplicaciones prácticas tienen las mediciones de potencia y ancho de banda en sistemas de comunicaciones reales?
-6. ¿Cómo se puede medir la respuesta en frecuencia de un canal alámbrico?
-7. ¿Cómo se puede obtener un modelo sencillo de las pérdidas (_pathloss_) en un canal inalámbrico?
+#### **Actividad 3: Transmisión y Medición de Señales con el USRP 2920**
+
+**Objetivo:** Transmitir señales usando el USRP 2920 y medir parámetros clave como potencia, ancho de banda, piso de ruido y relación señal a ruido (SNR).
+
+1. **Configuración del sistema de transmisión:**
+   - Se configuró el diagrama de flujo en GNU Radio para la transmisión mediante el USRP 2920.
+   - Se estableció la conexión entre el USRP 2920 y el analizador de espectros R&S FPC1000 a través de un cable coaxial.
+
+2. **Observación de la señal en el analizador de espectros:**
+   - Al iniciar la transmisión de una señal senoidal pura, se evidenció la presencia de más de dos impulsos en el espectro.
+   - Con la orientación del docente, se comprendió que este comportamiento se debía a la saturación del sistema, causada por las limitaciones del hardware al alcanzar su rango máximo de operación.
+
+3. **Medición de potencia en distintas formas de onda:**
+   - Se variaron las formas de onda transmitidas y se midió la potencia de cada una utilizando la herramienta de marcadores del analizador de espectros.
+   - Se empleó el método de los 20 dB, realizando los siguientes cálculos:
+     - Conversión de los valores a Watts.
+     - Multiplicación por 2 debido a la simetría del espectro (excepto la componente en DC).
+     - Suma de los resultados obtenidos y conversión final a dBm.
+   - Las evidencias de este proceso se encuentran en la carpeta `images`, en la subcarpeta `powers`.
+
+4. **Sintonización y análisis de una señal de radio FM:**
+   - Se conectó una antena al analizador de espectros para recibir señales de radiofrecuencia.
+   - Se sintonizó la emisora 95.7 FM y se realizaron mediciones de ancho de banda y potencia de la señal recibida.
+   - Las mediciones y análisis de la señal de radio se encuentran documentados en la carpeta `images`, en la subcarpeta `radio`.
+
+---
+
+### **Actividad 4: Análisis de Resultados y Conclusiones**
+
+#### **Comparación de Resultados**
+
+1. **Diferencias entre simulaciones y mediciones reales:**  
+   - Se observó que las señales simuladas en GNU Radio presentan características ideales, sin ruido ni distorsiones significativas, mientras que en las mediciones reales, el ruido afecta la calidad de la señal.
+   - En la transmisión real, se evidenció que factores como la saturación del sistema y las limitaciones del hardware pueden alterar la forma esperada de la señal.
+
+2. **Diferencias entre mediciones con osciloscopio y analizador de espectros:**  
+   - El osciloscopio permitió observar las señales en el dominio del tiempo, facilitando el análisis de amplitud, periodo y forma de onda.
+   - El analizador de espectros mostró la distribución de frecuencia de las señales, permitiendo evaluar parámetros como el ancho de banda y la presencia de armónicos.
+
+#### **Conclusiones Finales**
+
+1. **Limitaciones de los equipos utilizados:**  
+   - Se identificó que los equipos poseen restricciones en términos de ancho de banda y sensibilidad, lo que afecta la precisión de las mediciones.
+   - La capacidad de procesamiento del USRP 2920 y la resolución del analizador de espectros fueron factores determinantes en la calidad de los datos obtenidos.
+
+2. **Variación de Parámetros:**  
+   - La modificación de parámetros como amplitud, frecuencia y fase produce cambios coherentes en los dominios del tiempo y la frecuencia, confirmando las predicciones teóricas. En particular, se verificó que la potencia observada es proporcional al cuadrado de la amplitud de la señal.
+
+3. **Importancia de la simulación previa con GNU Radio:**  
+   - La utilización de GNU Radio permitió predecir con mayor precisión los resultados esperados antes de realizar mediciones con el analizador de espectros, proporcionando una visión más clara sobre el comportamiento de las señales y facilitando la comprensión de los conceptos abordados a lo largo del documento.
+
+Las evidencias de los análisis realizados se encuentran en la carpeta `images`, organizadas según el tipo de medición.
+
+---
+
+### Referencias
+- [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 164-165, 346. Chapter 5 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
+- [USRP 2920](http://www.testdynamics.co.za/Product/PDF/USRP2920.pdf)
+- [Osciloscopio R&S RTB2004](https://distron.es/tienda/osciloscopio-rs-rtb2004/)
+- [Analizador de espectros R&S FPC1000](https://distron.es/tienda/analizador-de-espectro-rs-fpc1000/)
