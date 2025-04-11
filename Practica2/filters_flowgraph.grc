@@ -603,7 +603,7 @@ blocks:
     bus_structure: null
     coordinate: [984, 464.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: blocks_wavfile_source_0
   id: blocks_wavfile_source
   parameters:
@@ -1427,7 +1427,7 @@ blocks:
     bus_structure: null
     coordinate: [848, 1060.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: uhd_usrp_source_0
   id: uhd_usrp_source
   parameters:
@@ -1864,7 +1864,7 @@ blocks:
     bus_structure: null
     coordinate: [1288, 1068.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: virtual_sink_0
   id: virtual_sink
   parameters:
@@ -1904,7 +1904,7 @@ blocks:
     bus_structure: null
     coordinate: [1240, 472.0]
     rotation: 0
-    state: enabled
+    state: disabled
 - name: virtual_sink_1_0
   id: virtual_sink
   parameters:
@@ -1918,7 +1918,7 @@ blocks:
     bus_structure: null
     coordinate: [1648, 1128.0]
     rotation: 0
-    state: disabled
+    state: enabled
 - name: virtual_source_0
   id: virtual_source
   parameters:
