@@ -7,9 +7,6 @@
 Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones  
 Universidad Industrial de Santander
 
-### Fecha
-[Fecha de realización]
-
 ---
 
 ## Declaración de Originalidad y Responsabilidad
