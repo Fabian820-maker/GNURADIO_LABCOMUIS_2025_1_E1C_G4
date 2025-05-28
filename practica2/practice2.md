@@ -23,9 +23,6 @@ Uso de IA: Se utiliz√≥ ChatGPT para estructurar el informe y mejorar la redacci√
 
 ## Contenido
 
-### Resumen
-Al final
-
 **Palabras clave:** GNU Radio, USRP 2920, osciloscopio, analizador de espectros, SNR, piso de ruido.
 
 ---
