@@ -1,148 +1,114 @@
-# Práctica 2A. Modelo de canal
+# Práctica 2: Modelo de Canal
 
-## Objetivos
-- Observar cómo el canal puede afectar la calidad de la señal transmitida y cómo  mitigar sus efectos.
-- Evaluar aspectos clave como la relación señal-ruido y la eficiencia en la transmisión de datos.
+### Integrantes
+- **Jaiver Josept Buitrago Graterón** - 2204277
+- **Nelson Fabian Valbuena Carreño** - 2181556
 
-Este enfoque permitirá no solo verificar la teoría, sino también desarrollar habilidades prácticas en el manejo de equipos de laboratorio, como equipos de medición (USRP 2920, osciloscopio R&S RTB2004 y analizador de espectros R&S FPC1000).
+Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones  
+Universidad Industrial de Santander
 
----
-
-## Materiales y Equipos
-
-- **USRP 2920:** Radio definido por software.
-- **Osciloscopio R&S RTB2004:** Para visualización de señales en el dominio del tiempo y la frecuencia.
-- **Analizador de Espectros R&S FPC1000:** Para mediciones en el dominio de la frecuencia.
-- **Computador con GNU Radio:** Para simulación y generación de señales usando el USRP 2920.
-- **Cables y conectores:** Para interconexión de equipos.
-- **Audífonos y micrófono** (opcional, debe traerlo cada grupo)
-
-### Ajustes preliminares
-
-- En el [flujograma](filters_flowgraph.grc) propuesto para esta práctica, se incluye un bloque "Wav File Source". **Antes** de ejecutar el flujograma, seleccione un archivo WAV para ser usado por este bloque. Algunos archivos WAV de ejemplo los puede encontrar en: [LabComUIS/samples/](../../samples/) 
-- Tenga en cuenta que existen instrumentos de visualización en dominio tiempo y frecuencia tanto para la señal ANTES como DESPUÉS del filtro.
----
-
-## Actividad 1: Actividades de simulación de canal en GNU Radio
-
-### Objetivo
-
-Familiarizarse con algunos fenómenos de canal en un ambiente simulado.
-
-### Procedimiento
-
-**Simulación**
-   - Verificar equipos y elementos a utilizar (revisar manuales de ser necesario)
-   - Cargar el flujograma: [filters_flowgraph.grc](filters_flowgraph.grc).
-   - Configurar siempre la frecuencia de muestreo (`samp_rate`) en $25e6/2^n$ Hz`, donde $n$ es un número entero mayor a 2.
-   - Genere diferentes señales y observe el efecto de variar las frecuencias de corte del filtro.
-   - Analice el efecto del ruido en el dominio del tiempo y la frecuencia para al menos dos formas de onda distintas.
-   - Muestre con un ejemplo gráfico el umbral de máximo de ruido ante el cual considera que es posible recuperar cada forma de onda utilizando únicamente filtrado.
-
-### Preguntas Orientadoras
-
-- ¿Cuál es el efecto de filtrar las frecuencias altas de una señal?
-- ¿Qué sucede al filtrar muy cerca de la frecuencia fundamental de la señal?
-- ¿Cuál es el efecto de filtrar las frecuencias bajas de una señal?
-- ¿Qué ocurre al eliminar armónicos de una señal?
-- ¿Qué efecto tiene la desviación de frecuencia en la señal recibida? ¿Qué efecto(s) produce el filtro cuando la señal recibida se ve afectada por desviación de frecuencia?
-- ¿Cómo cuantificar la degradación de la señal al aumentar los niveles de ruido?
-- ¿Cómo se puede mejorar la relación señal a ruido en una señal?
-- ¿Cómo podría cuantificar la calidad de la señal recibida? Considere el caso de señales analógicas y digitales.
-
-### Evidencia
-
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
+### Fecha
+21 de Febrero del 2025
 
 ---
 
-## Actividad 2: Fenómenos de canal en el osciloscopio
+## Declaración de Originalidad y Responsabilidad
+Los autores de este informe certifican que el contenido aquí presentado es original y ha sido elaborado de manera independiente. Se han utilizado fuentes externas únicamente como referencia y han sido debidamente citadas.
 
-### Objetivo
+Asimismo, los autores asumen plena responsabilidad por la información contenida en este documento.
 
-Familiarizarse con los fenómenos de un canal alámbrico real en el dominio del tiempo.
-
-### Procedimiento
-
-1. **Configurar el USRP 2920:**
-   - Configurar el flujograma [filters_flowgraph.grc](filters_flowgraph.grc) en GNU Radio para transmitir una señal a través del USRP.
-   - Habilitar o deshabilitar los bloques correspondientes (`Channel Model`, `Throttle`, `UHD: USRP Sink`, `UHD: USRP Source`, `Virtual Sink`). Para esto, seleccione el bloque deseado y presione **E** (enable) o **D** (disable), según corresponda.
-   - Configurar siempre la frecuencia de muestreo (`samp_rate`) en $25e6/2^n$ Hz`, donde $n$ es un número entero mayor a 2. Verifique que la frecuencia de muestreo durante la ejecución, sea la misma que ha configurado en el flujograma.
-
-2. **Configurar el osciloscopio:**
-   - Encender, configurar y conectar el osciloscopio a la salida del USRP 2920 usando diferentes cables coaxiales, y ajustando los parámetros necesarios para evidenciar los fenómenos de canal analizados en la Actividad 1.
-   - Variar la frecuencia de portadora del USRP entre 50 MHz hasta 500 MHz y anaalizar los resultados.
-
-### Preguntas Orientadoras
-
-- ¿Cuál es el efecto del ruido sobre la amplitud de las señales medidas en el osciloscopio? ¿Conservan las mismas relaciones que se evidencian en la simulación?
-- ¿La relación señal a ruido creada intencionalmente en el computador se amplifica o se reduce en la señal observada en el osciloscopio?
-- Demuestre ¿cómo se puede mejorar la relación señal a ruido en una señal?
-- ¿Cómo se evidencia el fenómeno de desviación de frecuencia en el osciloscopio? Evidenciar al menos con dos formas de onda.
-- Determine la afectación de un medio de transmisión coaxial (usar cables largos) sobre una señal periódica operando a las capacidades máximas de muestreo del USRP.
-- 
-  - **NOTA:** La frecuencia de transmisión no debe superar los 500 MHz para ser observada en el osciloscopio. Para el experimento, considere las relaciones de muestreo correspondientes.
-- Usando cables coaxiales de diferentes longitudes, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida?
-- Usando antenas, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida? ¿Es posible compensar el fenómeno?
-- ¿Qué modelo de canal básico describe mejor las mediciones obtenidas en la práctica?
-
-### Evidencia
-
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
+Uso de IA: Se utilizó ChatGPT para estructurar el informe y mejorar la redacción, pero el contenido técnico y los análisis fueron desarrollados íntegramente por los autores.
 
 ---
 
-## Actividad 3: Fenómenos de canal en el analizador de espectro
+## Contenido
 
-### Objetivo
+### Resumen
+Al final
 
-Familiarizarse con los fenómenos de un canal alámbrico real en el dominio de la frecuencia.
+**Palabras clave:** GNU Radio, USRP 2920, osciloscopio, analizador de espectros, SNR, piso de ruido.
 
-### Procedimiento
-
-1. **Configurar el USRP 2920:**
-   - Configurar el flujograma [filters_flowgraph.grc](filters_flowgraph.grc) en GNU Radio para transmitir una señal a través del USRP.
-   - Habilitar o deshabilitar los bloques correspondientes (`Channel Model`, `Throttle`, `UHD: USRP Sink`, `UHD: USRP Source`, `Virtual Sink`). Para esto, seleccione el bloque deseado y presione **E** (enable) o **D** (disable), respectivamente.
-   - Configurar siempre la frecuencia de muestreo (`samp_rate`) en $25e6/2^n$ Hz`, donde $n$ es un número entero mayor a 2.  Verifique que la frecuencia de muestreo durante la ejecución, sea la misma que ha configurado en el flujograma.
-
-2. **Configurar el Analizador de Espectros:**
-   - Encender, configurar y conectar el analizador de espectros a la salida del USRP 2920 usando diferentes cables coaxiales, y ajustando los parámetros necesarios para evidenciar los fenómenos de canal analizados en la Actividad 1.
-
-### Preguntas Orientadoras
-
-- ¿Cuál es el efecto del ruido sobre la respuesta en frecuencia de las señales medidas en el analizador de espectro? ¿Conservan las mismas relaciones que se evidencian en la simulación?
-- ¿La relación señal a ruido creada intencionalmente desde el computador se amplifica o se reduce en la señal observada en el analizador de espectro?
-- Adjunte la evidencia de la medición de la relación señal a ruido de dos formas de onda distintas.
-- ¿Cómo se evidencia el fenómeno de desviación de frecuencia en el analizador de espectro? Evidenciar al menos con dos formas de onda.
-- Determine la afectación de un medio de transmisión coaxial (usar cables largos) sobre una señal periódica operando a las capacidades máximas de muestreo del USRP.
-  - **NOTA:** La frecuencia de transmisión no debe superar los 1000 MHz para ser observada en el analizador. Para el experimento, considere las relaciones de muestreo correspondientes.
-- Usando cables coaxiales de diferentes longitudes, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida?
-- Usando antenas, ¿cómo afecta la distancia entre el transmisor y el receptor a la amplitud de la señal medida? ¿Es posible compensar el fenómeno?
-- ¿Qué modelo de canal básico describe mejor las mediciones obtenidas en la práctica?
-
-### Evidencia
-
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
-
-## Actividad 4: Efectos de los fenómenos de canal en la conversión de frecuencia
-
-### Objetivo
-
-Familiarizarse con los efectos de los fenómenos de un canal alámbrico e inalámbrico real en la conversión de frecuencia.
+---
 
 ### Procedimiento
 
-**Configurar el USRP 2920:**
-   - Configurar el flujograma [filters_flowgraph.grc](filters_flowgraph.grc) en GNU Radio para **transmitir y recibir ** una señal a través del USRP.
-   - Habilitar o deshabilitar los bloques correspondientes (`Channel Model`, `Throttle`, `UHD: USRP Sink`, `UHD: USRP Source`, `Virtual Sink`). Para esto, seleccione el bloque deseado y presione **E** (enable) o **D** (disable), respectivamente.
-   - Configurar siempre la frecuencia de muestreo (`samp_rate`) en $25e6/2^n$ Hz`, donde $n$ es un número entero mayor a 2. Verifique que la frecuencia de muestreo durante la ejecución, sea la misma que ha configurado en el flujograma.
-   - Compare los resultados al recibir la señal usando diferentes medios (aire o cable coaxial).
+#### **Actividad 1: Actividad de simulación**
 
-### Preguntas Orientadoras
+**Objetivo:** Familiarizarse con algunos fenómenos de canal en un ambiente simulado.
 
-- ¿Cómo se evidencian los diferentes fenómenos de canal en la señal recibida?
-- ¿Cómo se pueden mitigar los efectos del canal en la señal recibida?
+1. **Verificación de Equipos:**
+   - Se verificó la correcta conexión y funcionamiento de cada equipo antes de iniciar las mediciones.
+   - Se cargó el flujograma entregado por el docente y se hizo el respectivo ajuste para trabajar.
 
-### Evidencia
+2. **Efectos de Aplicación de un Filtro:**
+   - **FILTRO**
+      - Para filtrar correctamente mi señal debo de filtrar primero el armónico fundamental para tener la misma frecuencia luego para la forma voy filtrando los demás armónicos. Si se filtran las frcuencias altas de una señal, es decir quitando la componete DC se pierte la frecuencia original de la señal
+   - **RUIDO** 
+      - A medida que aumenta el ruido se van perdiendo armónicos (la potencia del ruido va alcanzando la potencia de los armónicos) sin embargo un filtro permite pasar aquellos armónicos necesarios para recuperar la señal y de esta forma se elimína el ruido
+   - Nota: La ventaja de tener un buen filtro es que en la señal filtrada se mejora la relación señal a ruido; es decir se tiene una buena calidad en la señal.
 
-*(Adjuntar las evidencias de la práctica en el Aula Virtual: capturas de pantalla, observaciones, cálculos o mediciones preliminares)*
+---
+
+#### **Actividad 2: Fenómenos de canal en el osciloscopio:**
+
+**Objetivo:** Familiarizarse con los fenómenos de un canal alambrico en el dominio del tiempo.
+
+1. **Variacion en la Frecuencia de la Portadora:**
+   - A medida que se umenta la frecuencia en la protadora la señal disminuye su amplitud es decir a mayor frecuencia la atecuanción generada por el canal es mayor carpeta freq
+
+2. **Efecto del Ruido en la Amplitud de la Señal:**
+   - Al tener una menor amplitud de la señal, esta es mas propensa al ruido, por lo que su forma de onda se va a ver afectada como se observa en la imagen en la carpeta freq en la frecuencia de los 500 MHz *Comentario el profesor dice que a los 500 MHz es el limite de muestreo del osciloscopio no es por efecto del ruido*
+
+---
+
+Wenasss paaa, ya con eso que me diste, acá te dejo la **Actividad 3** bien armadita en el mismo estilo de las anteriores, con introducción, procedimiento y cierre. Mira cómo quedó:
+
+---
+
+### **Actividad 3: Fenómenos de Canal en el Analizador de Espectro**
+
+**Objetivo:**
+Familiarizarse con los fenómenos que se presentan en un canal alámbrico real, específicamente en el dominio de la frecuencia, utilizando el USRP y el analizador de espectros.
+
+**Desarrollo de la Actividad:**
+
+1. **Configuración del entorno de transmisión:**
+
+   * Se utilizó el flujograma `filters_flowgraph.grc` en GNU Radio, el cual permite la transmisión de señales a través del USRP 2920.
+   * Fue necesario habilitar o deshabilitar bloques como `Channel Model`, `Throttle`, `UHD: USRP Sink`, `UHD: USRP Source` y `Virtual Sink` según la necesidad del experimento, utilizando las teclas **E** (enable) y **D** (disable).
+   * Se estableció la frecuencia de muestreo (`samp_rate`) en la forma $\frac{25 \cdot 10^6}{2^n}$, donde **n** es un número entero mayor a 2. Se verificó que esta frecuencia fuera consistente tanto en la configuración como durante la ejecución del flujo.
+
+2. **Conexión al analizador de espectros:**
+
+   * Se encendió y configuró el analizador R\&S®FPC1000.
+   * Se conectó a la salida del USRP usando cables coaxiales de diferentes longitudes.
+   * Se ajustaron parámetros como el ancho de banda, el span y la escala para observar adecuadamente la respuesta en frecuencia de la señal recibida.
+
+3. **Observaciones y fenómenos analizados:**
+
+   * **Efecto del ruido:**
+     El ruido provoca una expansión del espectro, disminuyendo la nitidez de los picos principales y reduciendo la relación señal a ruido. Si bien las simulaciones muestran este comportamiento de forma idealizada, en la práctica se observaron variaciones en potencia debido a las diferencias de impedancia entre equipos:
+
+     * El osciloscopio R\&S®RTB2000 tiene una impedancia alta (1 MΩ), ideal para formas de onda en el tiempo.
+     * El analizador de espectros tiene 50 Ω, óptimo para medir potencia en RF.
+       Esto afecta directamente la medida de potencia vista en cada instrumento.
+
+---
+
+#### **Conclusiones Finales**
+
+1. **Efecto del ruido sobre la señal:**
+
+   * El ruido genera un ensanchamiento del espectro y reduce la nitidez de los componentes principales de la señal. A pesar de esto, se puede mitigar parcialmente con el uso de filtros adecuados.
+
+2. **Influencia de la distancia en transmisión por cable y antena:**
+
+   * Con cables más largos se observó mayor atenuación y un pequeño retardo. En transmisión por antenas, el alejamiento entre transmisor y receptor causó una disminución notable de la amplitud, además de que elementos cercanos (como una mano) afectaron la señal. Estos efectos pueden compensarse con antenas direccionales o amplificadores.
+
+---
+
+### Referencias
+- [Proakis, 2014] J. Proakis, M. Salehi. Fundamentals of communication systems. 2 ed. England: Pearson Education Limited, 2014. p. 164-165, 346. Chapter 5 In: [Biblioteca UIS](https://uis.primo.exlibrisgroup.com/permalink/57UIDS_INST/63p0of/cdi_askewsholts_vlebooks_9781292015699)
+- [USRP 2920](http://www.testdynamics.co.za/Product/PDF/USRP2920.pdf)
+- [Osciloscopio R&S RTB2004](https://distron.es/tienda/osciloscopio-rs-rtb2004/)
+- [Analizador de espectros R&S FPC1000](https://distron.es/tienda/analizador-de-espectro-rs-fpc1000/)
