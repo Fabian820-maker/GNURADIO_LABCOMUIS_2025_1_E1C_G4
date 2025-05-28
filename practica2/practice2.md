@@ -7,9 +7,6 @@
 Escuela de Ingenierías Eléctrica, Electrónica y de Telecomunicaciones  
 Universidad Industrial de Santander
 
-### Fecha
-21 de Febrero del 2025
-
 ---
 
 ## Declaración de Originalidad y Responsabilidad
